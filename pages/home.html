@@ -1,0 +1,23 @@
+<!-- Home Page Content -->
+<section class="hero bg-green text-white">
+    <div class="container py-5">
+        <div class="row min-vh-100 align-items-center text-center">
+            <div class="col-lg-8 mx-auto">
+                <h1 class="display-1 fw-bold mb-4">Hello, I'm Joana</h1>
+                <p class="lead mb-4">
+                    Creative developer crafting beautiful digital experiences
+                </p>
+                <button class="btn btn-light btn-lg" data-page="work">View My Work</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Add event listener for the work button on home page
+    document.querySelector('[data-page="work"]')?.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Trigger the main navigation system
+        document.querySelector('nav [data-page="work"]').click();
+    });
+</script>

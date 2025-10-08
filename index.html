@@ -12,6 +12,7 @@
 
 </head>
 <body>
+
       <!-- Loading Overlay -->
       <div id="loadingOverlay">
         <div class="spinner-border text-light" role="status">
@@ -19,258 +20,61 @@
         </div>
       </div>
 	<!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Joana Araújo</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="#home">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#portfolio">Portfolio</a>
-          </li>
-		      <li class="nav-item">
-            <a class="nav-link" href="#" id="aboutBtn">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="skillsBtn">My Skills</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" id="contactBtn">Contact</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <!-- Carousel -->
-  <div id="portfolioCarousel" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="assets/imgs/alfamitoSbk_th.jpg" class="d-block w-100 img-fluid" alt="Slide 1">
-      </div>
-      <div class="carousel-item">
-        <img src="assets/imgs/argumentarioRegressoAulas_th.jpg" class="d-block w-100 img-fluid" alt="Slide 2">
-      </div>
-      <div class="carousel-item">
-        <img src="assets/imgs/nestle-mupi-digital_th.jpg" class="d-block w-100 img-fluid" alt="Slide 3">
-      </div>
-    </div>
-  
-    <!-- Controlos Carrossel  -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#portfolioCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#portfolioCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  
-    <!-- Overlay Caption -->
-    <div class="carousel-caption d-flex flex-column justify-content-center align-items-center">
-      <h1 class="display-4 text-white">Welcome</h1>
-      <p class="lead text-white">Digital Portfolio</p>
-    </div>
-  </div>
-
-
-  <!-- Projetos -->
-  <div class="container my-5" id="portfolio">
-    <h2 class="text-center mb-4">Portfolio</h2>
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-          <div class="card project-card" data-bs-toggle="modal" data-bs-target="#projectModal" data-title="Alfa Mito SBK" data-description="Landing page para recolha de leads campanha Alfa Romeo" data-img="assets/imgs/alfamitoSbk_th.jpg">
-            <img src="assets/imgs/alfamitoSbk_th.jpg" class="card-img-top" alt="Thumbnail 1">
-            <div class="card-overlay">
-              <h5>Alfa Mito SBK</h5>
-              <p>Landing page para recolha de leads campanha Alfa Romeo</p>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card project-card" data-bs-toggle="modal" data-bs-target="#projectModal" data-title="Ambre Solaire" data-description="Pós-produção audiovisual para aplicação rótulo embalagem Garnier" data-img="assets/imgs/ambresolaire-bruma_seca_th.jpg">
-            <img src="assets/imgs/ambresolaire-bruma_seca_th.jpg" class="card-img-top" alt="Thumbnail 2">
-            <div class="card-overlay">
-              <h5>Ambre Solaire</h5>
-              <p>Pós-produção audiovisual para aplicação rótulo embalagem Garnier </p>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card project-card" data-bs-toggle="modal" data-bs-target="#projectModal" data-title="Ambre Solaire" data-description="Pós-produção audiovisual para aplicação rótulo embalagem Garnier" data-img="assets/imgs/argumentarioRegressoAulas_th.jpg">
-            <img src="assets/imgs/argumentarioRegressoAulas_th.jpg" class="card-img-top" alt="Thumbnail 3">
-            <div class="card-overlay">
-              <h5>MEO Kids</h5>
-              <p>Animação digital para promover novo interface MEO Kids</p>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card project-card" data-bs-toggle="modal" data-bs-target="#projectModal" data-title="Ambre Solaire" data-description="Pós-produção audiovisual para aplicação rótulo embalagem Garnier" data-img="assets/imgs/fiat500C=500_th.jpg">
-            <img src="assets/imgs/fiat500C=500_th.jpg" class="card-img-top" alt="Thumbnail 4">
-            <div class="card-overlay">
-              <h5>Fiat 500C</h5>
-              <p>Banner M-Rec Fiat para campanha digital</p>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card project-card" data-bs-toggle="modal" data-bs-target="#projectModal" data-title="Ambre Solaire" data-description="Pós-produção audiovisual para aplicação rótulo embalagem Garnier" data-img="assets/imgs/garnier-tesourosdemel_th.jpg">
-            <img src="assets/imgs/garnier-tesourosdemel_th.jpg" class="card-img-top" alt="Thumbnail 5">
-            <div class="card-overlay">
-              <h5>Garnier Honey Treasures</h5>
-              <p>Banner M-Rec Garnier para campanha digital</p>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card project-card" data-bs-toggle="modal" data-bs-target="#projectModal" data-title="Ambre Solaire" data-description="Pós-produção audiovisual para aplicação rótulo embalagem Garnier" data-img="assets/imgs/nestle-mupi-digital_th.jpg">
-            <img src="assets/imgs/nestle-mupi-digital_th.jpg" class="card-img-top" alt="Thumbnail 6">
-            <div class="card-overlay">
-              <h5>Nestlé Digital Mupi</h5>
-              <p>Mupi digital para campanha Nescafé Dolce Gusto</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>   
-  </div>
-
-<!-- View Projectos Individuais  -->
-<div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true" data-bs-theme="dark">
-  <div class="modal-dialog modal-dialog-centered modal-xl">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title text-white p-3" id="overlayTitle">Titulo</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body d-flex flex-column flex-md-row text-white">
-        <div class="col-md-6 p-3">
-          <img src="" id="overlayImage" class="img-fluid" alt="Project Image">
-        </div>
-        <div class="col-md-6 p-3">
-          <p id="overlayDescription">Descrição Projecto</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam mi nunc, ultrices egestas tincidunt at, interdum vel ipsum. Pellentesque laoreet mauris leo, 
-            ac blandit purus volutpat non. Sed dignissim vehicula urna, vitae lacinia sem aliquet et. Maecenas justo erat, congue eget mi sit amet, sodales pellentesque 
-            tellus. Vivamus molestie nisl leo, et sollicitudin libero euismod in. Nam sollicitudin enim et urna tempus eleifend. Quisque pellentesque tristique magna ac 
-            volutpat. Cras finibus lacus vel ex porttitor volutpat. Morbi sit amet tempor felis. Sed rhoncus justo vel dictum pharetra.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- About -->	
-	<div id="aboutSection">
-    <button class="close-btn">&times;</button>
-    <div class="content">
-      <h2>About Me</h2>
-      <p>Experienced Multimedia Designer with a proven track record in the telecommunications industry, I am a skilled multimedia designer 
-        proficient in HTML5, CSS3, ActionScript, WordPress, and the Adobe Creative Suite (Photoshop, Illustrator, After Effects, Premiere Pro). 
-        My professional training has equipped me with a strong foundation in arts and design. </p>
-      <p>Key Skills:</p>
-      <ul>
-        <li>Multimedia Design: Creating engaging and visually appealing content for various platforms</li>
-        <li>Web Development: Building responsive and user-friendly websites</li>
-        <li>Graphic Design: Designing logos, branding materials, and other visual assets</li>
-        <li>Video Production: Editing and producing videos for marketing and promotional purposes</li>
-      </ul>
-        <p>I am passionate about combining creativity with technical expertise to deliver high-quality multimedia solutions.</p>
-
-    </div>
-  </div>
-<!-- Skill -->
-  <div id="skillsSection">
-    <button class="close-btn">&times;</button>
-    <div class="content">
-      <h1 class="text-center">My Skills</h1>
-      <div class="skill">
-        <h4>HTML</h4>
-        <div class="progress">
-          <div class="progress-bar" role="progressbar" style="width: 0%;" data-skill="90">90%</div>
-        </div>
-      </div>
-      <div class="skill">
-        <h4>CSS</h4>
-        <div class="progress">
-          <div class="progress-bar" role="progressbar" style="width: 0%;" data-skill="85">85%</div>
-        </div>
-      </div>
-      <div class="skill">
-        <h4>JavaScript</h4>
-        <div class="progress">
-          <div class="progress-bar" role="progressbar" style="width: 0%;" data-skill="75">75%</div>
-        </div>
-      </div>
-      <div class="skill">
-        <h4>Bootstrap</h4>
-        <div class="progress">
-          <div class="progress-bar" role="progressbar" style="width: 0%;" data-skill="80">80%</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-   <!-- Contact Modal -->
-   <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true"  data-bs-theme="dark">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title text-white" id="contactModalLabel">Contact Me</h5>
-          <button type="button" class="btn-close btn-close-white py-3" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="contactForm">
-            <div class="mb-3 text-white">
-              <label for="emailInput" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="emailInput" placeholder="name@example.com" required>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" id="submitContact">Submit</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-<!-- Footer -->
-  <div id="footer" class="container-fluid">
-    <footer class="container py-3">
-      <div class="row align-items-center">
-        <div class="col-12 col-md-4 d-flex align-items-center justify-content-center justify-content-md-start">
-          <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-            <i class="bi bi-bootstrap"></i>
-          </a>
-          <span class="mb-3 mb-md-0 footer-info">© 2024 Joana Araújo</span>
-        </div>
-  
-        <div class="col-12 col-md-4 offset-md-4 d-flex justify-content-center justify-content-md-end">
-          <ul class="nav list-unstyled d-flex">
-            <li class="ms-2"><a class="text-body-secondary" href="#"><i class="bi bi-instagram"></i></a></li>
-            <li class="ms-2"><a class="text-body-secondary" href="#"><i class="bi bi-linkedin"></i></a></li>
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-bottom">
+      <div class="container-fluid">
+<!--         <a class="navbar-brand" href="#">Joana Araújo</a> -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto w-25">
+              <li class="nav-item">
+                  <a class="nav-link active" data-page="home"><i class="bi bi-house-fill"></i> Home</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" data-page="work"><i class="bi bi-tools"></i> Work</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" data-page="about"><i class="bi bi-person-arms-up"></i>About</a>
+              </li>
           </ul>
         </div>
       </div>
-    </footer>
+    </nav>
   </div>
-  
-  
+  <!-- Carousel -->
+   <div id="content-container">
+        <!-- Content will be loaded here -->
+    </div>
+
+<!-- View Individuals Projects  -->
+<div class="modal fade" id="projectModal" data-bs-theme="dark">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-white"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-white"></div>
+        </div>
+    </div>
+</div>
+</div>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Manrope:wght@200..800&display=swap" rel="stylesheet">
   <!-- Bootstrap JS -->
-  <link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
   
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-  <script src="js/portfolio.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<!--   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script> -->
+  <!-- RoughEase, ExpoScaleEase and SlowMo are all included in the EasePack file -->    
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/EasePack.min.js"></script>
+  <script src="js/portfolio.js" type="module"></script>
 
 </body>
 </html>
