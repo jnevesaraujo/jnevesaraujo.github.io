@@ -1,109 +1,153 @@
 import PortfolioNav from './PortfolioNav.js';
-import { projects } from './projects-data.js';
+import ProjectManager from './ProjectManager.js';
+import PageManager from './PageManager.js';
 
 document.addEventListener("DOMContentLoaded", (event) => {
-  new PortfolioNav();
-  gsap.registerPlugin(SlowMo)
-  const loadingOverlay = document.getElementById('loadingOverlay');
+    new PortfolioNav();
+    gsap.registerPlugin(SlowMo);
 
-  // Remover o overlay de carregamento quando a página estiver completamente carregada
-  window.addEventListener('load', function() {
-    setTimeout(function() {
-      loadingOverlay.classList.add('hidden');
-    }, 500); // Pequeno atraso para garantir um fade-out suave
-  });
+    const loadingOverlay = document.getElementById('loadingOverlay');
 
-  // Adicionar evento de redimensionamento para mostrar o overlay durante o redimensionamento
-  let resizeTimer;
-  window.addEventListener('resize', function() {
-    loadingOverlay.classList.remove('hidden'); // Mostrar o overlay durante o redimensionamento
-    clearTimeout(resizeTimer); // Limpar o temporizador se já estiver em execução
+    // Store current language
+    let currentLanguage = 'pt';
 
-    // Esconder o overlay após o redimensionamento
-    resizeTimer = setTimeout(function() {
-      loadingOverlay.classList.add('hidden');
-    }, 500);
-  });
+    // Initialize ProjectManager
+    const pageManager = new PageManager('87g07cqn', 'production');
+    const projectManager = new ProjectManager('87g07cqn', 'production');
 
+    // Make it globally available with language support
+    window.renderHomePage = async (lang = currentLanguage) => {
+        await pageManager.renderPage('home', '#watercolor-text h1', '#watercolor-text .lead', '#watercolor-text .btn-viewwork', lang);
+    };
 
-  // In your work.html or portfolio.js
-function renderProjects() {
-    const grid = document.querySelector('.project-grid'); // Add this class to your row
-    
-    projects.forEach(project => {
-        const col = document.createElement('div');
-        col.className = 'col-md-4';
-        col.innerHTML = `
-            <div class="card project-card shadow-sm h-100" data-project-id="${project.id}">
-                <img src="${project.thumbnail}" class="card-img-top" alt="${project.title}">
-                <div class="card-overlay">
-                    <h5>${project.title}</h5>
-                    <p>${project.shortDesc}</p>
-                    <div class="d-flex gap-2 flex-wrap">
-                        ${project.stack.map(tech => 
-                            `<span class="badge bg-primary">${tech}</span>`
-                        ).join('')}
-                    </div>
-                </div>
-            </div>
-        `;
-        
-        // Add click handler
-        col.querySelector('.project-card').addEventListener('click', () => {
-            openProjectModal(project);
-        });
-        
-        grid.appendChild(col);
+    window.renderAboutPage = async (lang = currentLanguage) => {
+        await pageManager.renderPage('about', '#aboutpage h1', '#aboutpage .about-text', '#aboutpage .tbd', lang);
+    };
+
+    window.renderWorkPage = async (lang = currentLanguage) => {
+        await pageManager.renderPage('work', '#workpage h1', '#workpage .lead', 'workpage .tbd ', lang);
+        window.renderProjects(lang);
+    };
+
+    window.renderProjects = async (lang = currentLanguage) => {
+        currentLanguage = lang;
+        await projectManager.fetchProjects(lang);
+        await projectManager.renderProjectGrid('.project-grid');
+    };
+
+    // Loading overlay handlers
+    window.addEventListener('load', function () {
+        setTimeout(function () {
+            loadingOverlay.classList.add('hidden');
+        }, 500);
     });
-}
-window.renderProjects = renderProjects;
 
-function openProjectModal(project) {
-    const modal = document.getElementById('projectModal');
-    
-    // Dispose any existing modal instance first
-    const existingModal = bootstrap.Modal.getInstance(modal);
-    if (existingModal) {
-        existingModal.dispose();
+    let resizeTimer;
+    window.addEventListener('resize', function () {
+        loadingOverlay.classList.remove('hidden');
+        clearTimeout(resizeTimer);
+
+        resizeTimer = setTimeout(function () {
+            loadingOverlay.classList.add('hidden');
+        }, 500);
+    });
+
+    const navTranslations = {
+        pt: {
+            home: 'Início',
+            work: 'Projectos',
+            about: 'Sobre'
+        },
+        en: {
+            home: 'Home',
+            work: 'Work',
+            about: 'About'
+        }
+    };
+
+    function updateNavLanguage(lang = currentLanguage) {
+        const links = document.querySelectorAll('#sidebar [data-page]'); // Only sidebar links
+        console.log('Found nav links:', links.length);
+
+        links.forEach(link => {
+            const page = link.getAttribute('data-page');
+            console.log('Updating page:', page, 'to lang:', lang);
+
+            if (navTranslations[lang] && navTranslations[lang][page]) {
+                const icon = link.querySelector('i');
+                const iconHTML = icon ? icon.outerHTML : '';
+                link.innerHTML = iconHTML + ' ' + navTranslations[lang][page];
+            }
+        });
     }
-    
-    modal.querySelector('.modal-title').textContent = project.title;
-    
-    let videoEmbed = '';
-    if (project.video) {
-        if (project.videoType === 'vimeo') {
-            videoEmbed = `<iframe src="https://player.vimeo.com/video/${project.videoId}" width="100%" height="400" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
-        } else if (project.videoType === 'youtube') {
-            videoEmbed = `<iframe width="100%" height="400" src="https://www.youtube.com/embed/${project.videoId}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+
+    updateNavLanguage();
+
+const sidebar = document.getElementById('sidebar');
+const togglerIcon = document.querySelector('.navbar-toggler-icon');
+
+// When offcanvas is shown, change to close icon
+sidebar.addEventListener('shown.bs.offcanvas', () => {
+    togglerIcon.style.backgroundImage = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512'%3E%3C!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--%3E%3Cpath fill='rgb(177, 151, 252)' d='M192 64C86 64 0 150 0 256S86 448 192 448l192 0c106 0 192-86 192-192S490 64 384 64L192 64zm192 96a96 96 0 1 1 0 192 96 96 0 1 1 0-192z'/%3E%3C/svg%3E\")";
+});
+
+// When offcanvas is hidden, change back to toggle icon
+sidebar.addEventListener('hidden.bs.offcanvas', () => {
+    togglerIcon.style.backgroundImage = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 576 512'%3E%3C!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--%3E%3Cpath fill='rgb(177, 151, 252)' d='M384 128c70.7 0 128 57.3 128 128S454.7 384 384 384l-192 0c-70.7 0-128-57.3-128-128s57.3-128 128-128l192 0zM576 256c0-106-86-192-192-192L192 64C86 64 0 150 0 256S86 448 192 448l192 0c106 0 192-86 192-192zM192 336a80 80 0 1 0 0-160 80 80 0 1 0 0 160z'/%3E%3C/svg%3E\")";
+});
+
+    // Language Switching
+    const languages = {
+        'pt': {
+            name: 'Português',
+            flagUrl: 'https://flagcdn.com/pt.svg'
+        },
+        'en': {
+            name: 'English',
+            flagUrl: 'https://flagcdn.com/gb.svg'
+        }
+    };
+
+    const currentLangFlag = document.getElementById('current-lang-flag');
+    const langOptions = document.querySelectorAll('.lang-option');
+
+    function switchLanguage(langCode) {
+        if (languages[langCode]) {
+            const newLang = languages[langCode];
+
+            currentLanguage = langCode;
+
+            currentLangFlag.src = newLang.flagUrl;
+            currentLangFlag.alt = newLang.name;
+
+            document.getElementById('current-lang-button').title = `Idioma atual: ${newLang.name}`;
+
+            console.log(`Idioma alterado para: ${newLang.name} (${langCode})`);
+
+            if (window.renderHomePage) {
+                window.renderHomePage(langCode);
+            }
+            if (window.renderAboutPage) {
+                window.renderAboutPage(langCode);
+            }
+
+            if (window.renderWorkPage) {
+                window.renderWorkPage(langCode);
+            }
+
+            updateNavLanguage(langCode);
+
+        } else {
+            console.error('Código de idioma desconhecido:', langCode);
         }
     }
 
-    modal.querySelector('.modal-body').innerHTML = `
-        <p>${project.fullDesc}</p>
-        ${videoEmbed}
-        <div class="project-images">
-            ${project.images.map(img => 
-                `<img src="${img}" class="img-fluid mb-3" alt="${project.title}">`
-            ).join('')}
-        </div>
-    `;
-    
-    // Create fresh modal instance
-    const modalInstance = new bootstrap.Modal(modal);
-    modalInstance.show();
-}
-
-/*   const navbarNav = document.querySelector('.navbar-collapse');
-  const navLinks = document.querySelectorAll('.nav-link');
-
-  // Adicionar evento de clique para cada link de navegação
-  navLinks.forEach(link => {
-    link.addEventListener('click', function () {
-      if (navbarNav.classList.contains('show')) {
-        const navbarToggler = document.querySelector('.navbar-toggler');
-        navbarToggler.click(); // Simular o clique para alternar o navbar
-      }
+    langOptions.forEach(item => {
+        item.addEventListener('click', function (event) {
+            event.preventDefault();
+            const selectedLang = this.getAttribute('data-lang');
+            switchLanguage(selectedLang);
+        });
     });
-  }); */
 
 });
