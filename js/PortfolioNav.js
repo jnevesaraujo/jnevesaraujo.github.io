@@ -4,7 +4,7 @@ export default class PortfolioNav {
         this.overlay = document.getElementById('loadingOverlay');
         this.currentPage = 'home';
         this.isAnimating = false;
-        
+
         this.init();
     }
 
@@ -13,14 +13,19 @@ export default class PortfolioNav {
         this.loadPage('home', false);
 
         // Setup navigation listeners
-        document.querySelectorAll('[data-page]').forEach(link => {
-            link.addEventListener('click', (e) => {
+        document.addEventListener('click', (e) => {
+            // Find the closest element with data-page (in case you clicked an icon inside the button)
+            const target = e.target.closest('[data-page]');
+
+            if (target) {
                 e.preventDefault();
-                const page = e.target.getAttribute('data-page');
+                const page = target.getAttribute('data-page');
+
+                // Trigger load if it's a new page and not animating
                 if (page !== this.currentPage && !this.isAnimating) {
                     this.loadPage(page);
                 }
-            });
+            }
         });
 
         // Handle browser back/forward
@@ -41,7 +46,7 @@ export default class PortfolioNav {
             // Fetch the page content
             const response = await fetch(`pages/${page}.html`);
             if (!response.ok) throw new Error('Page not found');
-            
+
             const html = await response.text();
 
             // Animate out old content
@@ -51,7 +56,16 @@ export default class PortfolioNav {
             this.container.innerHTML = html;
 
             // Check if we're on the work page and render projects
-            if (page === 'work') renderProjects();
+            if (page === 'work' && window.renderWorkPage) window.renderWorkPage();
+
+            // Check if we're on the home page and render page content
+            if (page === 'home' && window.renderHomePage) {
+                await window.renderHomePage();
+            }
+
+            if (page === 'about' && window.renderAboutPage) {
+                await window.renderAboutPage();
+            }
 
             // Update active nav link
             this.updateNavigation(page);
@@ -116,11 +130,11 @@ export default class PortfolioNav {
 
     animateIn() {
         return new Promise((resolve) => {
-            gsap.fromTo(this.container, 
+            gsap.fromTo(this.container,
                 { x: 100, opacity: 0 },
-                { 
-                    x: 0, 
-                    opacity: 1, 
+                {
+                    x: 0,
+                    opacity: 1,
                     duration: 0.4,
                     ease: 'power2.out',
                     force3D: true,

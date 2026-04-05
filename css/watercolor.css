@@ -1,0 +1,65 @@
+/*
+* Watercolor CSS 
+*/
+
+body:has(#watercolor-content) {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #f8f8f8;
+}
+
+canvas {
+    position: fixed; /* Changed to fixed so it stays put */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1 !important; /* Negative index pushes it BEHIND everything else */
+    pointer-events: all;    /* Ensure the canvas still catches the mouse */
+}
+
+/* 2. The Hero Section: Make sure it doesn't block the mouse */
+.hero {
+    position: relative;
+    z-index: 1;
+    background: transparent !important; /* Ensure no background color hides the canvas */
+}
+
+#watercolor-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 0;
+    pointer-events: none;
+    color: #333;
+}
+
+#watercolor-text {
+    position: relative;
+    z-index: 10;
+    pointer-events: none;
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
+#watercolor-text button, 
+#watercolor-text a {
+    pointer-events: auto; /* Buttons still need to be clickable */
+}
+
+#watercolor-content h1 {
+    font-size: 4rem;
+    font-weight: 300;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(255,255,255,0.8);
+}
+
+#watercolor-content p {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
