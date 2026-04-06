@@ -7,9 +7,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
     gsap.registerPlugin(SlowMo);
 
     const loadingOverlay = document.getElementById('loadingOverlay');
-
+    
+    var userLang = navigator.language || navigator.userLanguage;
     // Store current language
-    let currentLanguage = 'pt';
+
+    if(userLang != ('pt' || 'en'))
+        userLang = 'en'
+    let currentLanguage = userLang;
 
     // Initialize ProjectManager
     const pageManager = new PageManager('87g07cqn', 'production');
