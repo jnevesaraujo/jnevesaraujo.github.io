@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     var userLang = navigator.language || navigator.userLanguage;
     // Store current language
 
-    if(userLang != ('pt' || 'en')) userLang = 'en';
+    if(userLang != ('pt' || 'en')) userLang = 'pt';
     let currentLanguage = userLang;
 
     // Initialize ProjectManager
